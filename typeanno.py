@@ -39,9 +39,9 @@ def restrict(cls):
                 statement.annotation,
                 name,
             )
-            def getter(self):
+            def getter(self, name=name):
                 return getattr(self, f"_{name}")
-            def setter(self, value):
+            def setter(self, value, name=name):
                 if restriction(value):
                     setattr(self, f"_{name}", value)
                 else:
