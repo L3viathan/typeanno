@@ -39,14 +39,14 @@ def restrict(cls):
                 statement.annotation,
                 name,
             )
-        def getter(self):
-            return getattr(self, f"_{name}")
-        def setter(self, value):
-            if restriction(value):
-                setattr(self, f"_{name}", value)
-            else:
-                raise ValueError(
-                    "Value {value!r} didn't pass check",
-                )
-        setattr(cls, name, property(fget=getter, fset=setter))
+            def getter(self):
+                return getattr(self, f"_{name}")
+            def setter(self, value):
+                if restriction(value):
+                    setattr(self, f"_{name}", value)
+                else:
+                    raise ValueError(
+                        "Value {value!r} didn't pass check",
+                    )
+            setattr(cls, name, property(fget=getter, fset=setter))
     return cls
